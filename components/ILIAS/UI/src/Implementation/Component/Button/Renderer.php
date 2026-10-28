@@ -177,7 +177,7 @@ class Renderer extends AbstractComponentRenderer
     {
         parent::registerResources($registry);
         $registry->register('assets/js/button.js');
-        $registry->register("./assets/js/moment-with-locales.min.js");
+        // $registry->register("./assets/js/moment-with-locales.min.js");
     }
 
     protected function renderClose(Component\Button\Close $component): string
