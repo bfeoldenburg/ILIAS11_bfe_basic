@@ -8492,10 +8492,15 @@ button .minimize, button .close {
   width: 30%;
 }
 .il-filter .rightaddon {
+  padding: 0;
   overflow: visible;
   white-space: nowrap;
   text-overflow: ellipsis;
   width: 10%;
+}
+.il-filter .rightaddon .btn {
+  min-width: 0;
+  width: 100%;
 }
 .il-filter .rightaddon .glyphicon {
   top: 0;
@@ -8566,7 +8571,13 @@ button .minimize, button .close {
   padding-right: 0.3em;
 }
 .il-filter-bar .il-filter-bar-toggle {
+  display: flex;
+  align-items: center;
   padding-left: 10px;
+}
+.il-filter-bar .il-filter-bar-toggle .il-toggle-item {
+  display: flex;
+  align-items: center;
 }
 
 .il-filter-controls {
@@ -12097,13 +12108,16 @@ div.alert ul {
   overflow: hidden;
   object-fit: cover;
 }
+.il-avatar.il-avatar-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
 .il-avatar.il-avatar-letter span.abbreviation {
   font-weight: 300;
   text-transform: inherit;
   font-size: 20.5px;
   line-height: 1;
-  position: relative;
-  top: 10.25px;
 }
 .il-avatar.il-avatar-letter.il-avatar-letter-color-1 {
   background-color: #0e6252;
@@ -12248,7 +12262,6 @@ div.alert ul {
   }
   .il-avatar.il-avatar-letter span.abbreviation {
     font-size: 11.25px;
-    top: 5.625px;
   }
 }
 .il-table-presentation-viewcontrols {

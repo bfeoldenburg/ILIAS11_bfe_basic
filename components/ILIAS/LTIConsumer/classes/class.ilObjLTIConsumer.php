@@ -1349,6 +1349,10 @@ class ilObjLTIConsumer extends ilObject2
 
         try {
             $connection->init();
+            if (parse_url($url, PHP_URL_SCHEME) === 'http') {
+                // many proxies only open tunnels to port 443: a call over plain HTTP is handed to the proxy as it is
+                $connection->setOpt(CURLOPT_HTTPPROXYTUNNEL, false);
+            }
             $connection->setOpt(CURLOPT_RETURNTRANSFER, true);
             $connection->setOpt(CURLOPT_FOLLOWLOCATION, true);
             $connection->setOpt(CURLOPT_MAXREDIRS, 3);
@@ -1642,13 +1646,13 @@ class ilObjLTIConsumer extends ilObject2
         $effective_roles_in_context = array_intersect($user_assigned_roles, $roles_in_path_ids);
 
         if (!empty($effective_roles_in_context)) {
-            $parent_ref_id = $DIC->repositoryTree()->getParentId($a_ref_id);
-            $context_obj_type = ilObject::_lookupType($parent_ref_id, true);
-
-            $instructor_base_titles = [
-                'il_' . $context_obj_type . '_admin',
-                'il_' . $context_obj_type . '_tutor'
-            ];
+            // the object may sit in folders inside the course or group, so every container above it counts
+            $instructor_base_titles = [];
+            foreach ($DIC->repositoryTree()->getPathId($a_ref_id) as $path_ref_id) {
+                $context_obj_type = ilObject::_lookupType($path_ref_id, true);
+                $instructor_base_titles[] = 'il_' . $context_obj_type . '_admin';
+                $instructor_base_titles[] = 'il_' . $context_obj_type . '_tutor';
+            }
 
             foreach ($effective_roles_in_context as $role_id) {
                 $role_title = ilObject::_lookupTitle($role_id);
