@@ -826,7 +826,7 @@ div.ilc_qover_StatusMessage {
 }
 div.ilc_qtitle_Title {
   margin-bottom: 20px;
-  font-size: 140%;
+  font-size: 120%;
   font-weight: normal;
 }
 div.ilc_sco_title_Title {
@@ -843,7 +843,7 @@ span.ilc_text_inline_Emph {
   font-style: italic;
 }
 figure.ilc_media_cont_MediaContainer {
-  margin: 0px;
+  margin: 10px;
 }
 figure.ilc_media_cont_MediaContainerFull100 {
   margin: 0px;
