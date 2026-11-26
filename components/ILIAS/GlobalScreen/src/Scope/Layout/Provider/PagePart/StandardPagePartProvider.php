@@ -179,6 +179,7 @@ class StandardPagePartProvider implements PagePartProvider
 
     public function getLogo(): ?Image
     {
+        global $DIC;
         $ilUser = $DIC['ilUser'];
         $std_logo = ilUtil::getImagePath("logo/HeaderIcon.svg");
 
@@ -197,6 +198,7 @@ class StandardPagePartProvider implements PagePartProvider
 
     public function getResponsiveLogo(): ?Image
     {
+        global $DIC;
         $ilUser = $DIC['ilUser'];
         $responsive_logo = ilUtil::getImagePath("logo/HeaderIconResponsive.svg");
 
