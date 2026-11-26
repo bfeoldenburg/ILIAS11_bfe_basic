@@ -1489,7 +1489,7 @@ class ilUtil
         return $result;
     }
 
-    public static function isUserInArray(array $a_unames): bool
+    public static function __isUserInArray(array $a_unames): bool
     {
         global $DIC;
         $ilUser = $DIC->user();
