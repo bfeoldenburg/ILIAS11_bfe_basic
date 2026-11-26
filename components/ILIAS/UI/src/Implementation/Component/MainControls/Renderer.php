@@ -128,6 +128,9 @@ class Renderer extends AbstractComponentRenderer
         UITemplateWrapper $tpl,
         RendererInterface $default_renderer
     ): void {
+        global $DIC;
+        $ilUser = $DIC->user();
+
         $f = $this->getUIFactory();
         foreach ($entries as $k => $entry) {
             $button = $entry;
@@ -144,9 +147,11 @@ class Renderer extends AbstractComponentRenderer
 
                 $trigger_signal = $component->getTriggerSignal($mb_id, $component::ENTRY_ACTION_TRIGGER);
                 $this->trigger_signals[] = $trigger_signal;
-                $button = $f->button()->bulky($entry->getSymbol(), $entry->getName(), '#')
-                    ->withOnClick($trigger_signal)
-                    ->withHelpTopics(...$entry->getHelpTopics());
+                $button = $f->button()->bulky($entry->getSymbol(), $entry->getName(), '#');
+                if (!$ilUser->getId() == ANONYMOUS_USER_ID) {
+                    $button = $button->withOnClick($trigger_signal);
+                }
+                $button = $button->withHelpTopics(...$entry->getHelpTopics());
             } else {
                 //add Links/Buttons as toplevel entries
                 $pos = array_search($k, array_keys($entries));
