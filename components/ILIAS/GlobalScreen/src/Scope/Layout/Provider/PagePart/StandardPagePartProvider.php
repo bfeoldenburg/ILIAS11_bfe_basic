@@ -179,9 +179,11 @@ class StandardPagePartProvider implements PagePartProvider
 
     public function getLogo(): ?Image
     {
+        $ilUser = $DIC['ilUser'];
         $std_logo = ilUtil::getImagePath("logo/HeaderIcon.svg");
 
-        if (!ilUtil::isUserInArray(["anon"])) {
+        if ($ilUser->getId() != ANONYMOUS_USER_ID)
+        //if (!ilUtil::isUserInArray(["anon"])) {
             return $this->ui->factory()->image()
                             ->standard($std_logo, $this->lang->txt('rep_main_page_logo_alt'))
                             ->withAction($this->getStartingPointAsUrl());
@@ -195,9 +197,11 @@ class StandardPagePartProvider implements PagePartProvider
 
     public function getResponsiveLogo(): ?Image
     {
+        $ilUser = $DIC['ilUser'];
         $responsive_logo = ilUtil::getImagePath("logo/HeaderIconResponsive.svg");
 
-        if (!ilUtil::isUserInArray(["anon"])) {
+        if ($ilUser->getId() != ANONYMOUS_USER_ID) {
+        //if (!ilUtil::isUserInArray(["anon"])) {
             return $this->ui->factory()->image()
                             ->standard($responsive_logo, $this->lang->txt('rep_main_page_logo_alt'))
                             ->withAction($this->getStartingPointAsUrl());
