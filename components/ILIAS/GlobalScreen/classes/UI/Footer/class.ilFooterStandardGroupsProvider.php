@@ -121,7 +121,7 @@ final class ilFooterStandardGroupsProvider extends AbstractStaticFooterProvider
     public function getAdditionalTexts(): array
     {
         $ilias_version = ILIAS_VERSION;
-        $text = "powered by ILIAS (v{$ilias_version})";
+        $text = "powered by ILIAS";
 
         return [
             $this->item_factory->text(
