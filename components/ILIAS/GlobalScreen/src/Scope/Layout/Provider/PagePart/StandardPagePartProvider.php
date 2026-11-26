@@ -182,7 +182,7 @@ class StandardPagePartProvider implements PagePartProvider
         $ilUser = $DIC['ilUser'];
         $std_logo = ilUtil::getImagePath("logo/HeaderIcon.svg");
 
-        if ($ilUser->getId() != ANONYMOUS_USER_ID)
+        if ($ilUser->getId() != ANONYMOUS_USER_ID) {
         //if (!ilUtil::isUserInArray(["anon"])) {
             return $this->ui->factory()->image()
                             ->standard($std_logo, $this->lang->txt('rep_main_page_logo_alt'))
