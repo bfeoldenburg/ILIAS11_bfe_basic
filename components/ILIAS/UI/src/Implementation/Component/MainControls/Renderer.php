@@ -148,7 +148,7 @@ class Renderer extends AbstractComponentRenderer
                 $trigger_signal = $component->getTriggerSignal($mb_id, $component::ENTRY_ACTION_TRIGGER);
                 $this->trigger_signals[] = $trigger_signal;
                 $button = $f->button()->bulky($entry->getSymbol(), $entry->getName(), '#');
-                if (!$ilUser->getId() == ANONYMOUS_USER_ID) {
+                if (!($ilUser->getId() == ANONYMOUS_USER_ID)) {
                     $button = $button->withOnClick($trigger_signal);
                 }
                 $button = $button->withHelpTopics(...$entry->getHelpTopics());
