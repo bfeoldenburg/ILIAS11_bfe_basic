@@ -120,6 +120,7 @@ class RepositoryMainBarProvider extends AbstractStaticMainMenuProvider
                 return $this->dic->ui()->factory()->legacy()->content($p->renderLastVisited());
             });
 
+        if (!\ilUtil::isLimitedRoleMember()) {
         $title = $this->dic->language()->txt("mm_favorites");
         $icon = $this->dic->ui()->factory()->symbol()->icon()->custom(ilUtil::getImagePath("standard/icon_fav.svg"), $title);
 
@@ -145,6 +146,7 @@ class RepositoryMainBarProvider extends AbstractStaticMainMenuProvider
                                             }
                                         ))
                                     );
+        }
         return $entries;
     }
 
